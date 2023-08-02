@@ -1,0 +1,8 @@
+export const PRIMARY_CHAIN_ID = 137;
+export const PRIMARY_ARBITRUM_CHAIN_ID = 42161;
+export const PRIMARY_INTERVAL = '1yr';
+export const PRIMARY_DECIMALS = '18';
+export const POLYGON_SYMBOL = 'MATIC';
+export const ETHEREUM_SYMBOL = 'ETH';
+export const DEFAULT_SOURCE_NETWORK = 137;
+export const DEFAULT_SOURCE_TOKEN = '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'; // Matic

@@ -1,0 +1,20 @@
+version: '3'
+services:
+  alfred-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.alfred-server
+    ports:
+      - 3000:3000
+    command: npx prisma migrate deploy
+    env_file:
+      - ./apps/alfred-server/.env
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    env_file:
+      - ./apps/alfred-server/.env

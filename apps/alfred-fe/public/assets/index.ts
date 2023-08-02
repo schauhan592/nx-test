@@ -1,0 +1,14 @@
+export { default as alfredLogo } from './logo.png';
+export { default as alfred1 } from './alfred1.png';
+export { default as alfred2 } from './alfred2.png';
+export { default as mainLogo } from './main_logo.svg';
+export { default as asset_landing } from './asset_landing.svg';
+export { default as line } from './line.svg';
+export { default as line_vertical } from './line_vertical.svg';
+export { default as path } from './path.svg';
+export { default as blockchain_vector } from './blockchain_vector.svg';
+export { default as LeaderboardIcon } from './extra-icons/leaderboard.svg';
+export { default as NewLogo } from './new_logo.svg';
+export { default as Logo } from './new_logo.png';
+export { default as Dot } from './Dot.png';
+export { default as cardBackground } from './background.png';

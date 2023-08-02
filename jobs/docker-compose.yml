@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  worker:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: pnpm start
+    env_file:
+      - ./envs/activities.env
+    depends_on:
+      - temporal
+
+  client:
+    env_file:
+      - ./envs/activities.env
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: pnpm workflow
+    depends_on:
+      - worker
+    
+
+  postgres:
+    image: postgres:15.1-alpine
+    env_file:
+      - ./envs/postgres.env
+    volumes:
+      - pg:/var/lib/postgresql
+    restart: unless-stopped
+
+  temporal:
+    container_name: temporal
+    depends_on:
+      - postgres
+    env_file:
+      - ./envs/temporal.env
+    image: temporalio/auto-setup:1.18.0
+    ports:
+      - 7233:7233
+
+  temporal-ui:
+    container_name: temporal-ui
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    image: temporalio/ui:2.6.2
+    ports:
+      - 8888:8080
+
+volumes:
+  pg:

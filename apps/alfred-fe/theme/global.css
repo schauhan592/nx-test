@@ -1,0 +1,28 @@
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #373737;
+}
+
+a {
+  text-decoration: none;
+  text-transform: none;
+  color: inherit;
+}
+
+.w3m-overlay {
+  --w3m-z-index: 900 !important;
+}
+
+:root {
+  --w3m-z-index: 900 !important;
+}

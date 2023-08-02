@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "alfred-common": "libs/alfred-common",
+    "alfred-fe": "apps/alfred-fe",
+    "alfred-fe-e2e": "apps/alfred-fe-e2e",
+    "application-analytics": "libs/application-analytics",
+    "copy-trading": "libs/copy-trading",
+    "graphs": "libs/graphs",
+    "ui-base": "libs/ui-base",
+    "wallets": "libs/wallets"
+  }
+}
