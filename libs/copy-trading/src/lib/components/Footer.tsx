@@ -12,16 +12,22 @@ import { ITrader } from '../@types';
 import Link from 'next/link';
 import { Link as MUILink } from '@mui/material';
 import getFilteredData from '../hooks/useGetFilter';
+import useSubscribeToNewsLetter from '../hooks/useSubcribeToNewsLetter';
+import { emailValidator } from '@alfred/alfred-common';
+import { useSnackbar } from 'notistack';
 // import { useWallet } from '@alfred/wallets';
 interface MasterTraderProps {
   data: ITrader[];
 }
 
 export default function Footer(props: MasterTraderProps) {
-  const [subscribeEmail, setSubscribeEmail] = useState<string>('Enter your email address');
+  const [subscribeEmail, setSubscribeEmail] = useState<string>('');
   const [topTraderAddress, setTopTraderAddress] = useState<ITrader>();
   const { data } = props;
   // const { account } = useWallet();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { mutate: subscribeToNewsLetter } = useSubscribeToNewsLetter();
   useEffect(() => {
     const filteredData = getFilteredData({
       data: data,
@@ -65,8 +71,27 @@ export default function Footer(props: MasterTraderProps) {
   //   { url: `copy-trading/dashboard?mode=trades&account=${account}`, text: 'Settings' },
   // ];
 
+  const handleOnChangeEmail = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSubscribeEmail(e.target.value);
+  };
+
   function handleSubmit() {
-    console.log('subscribed');
+    const isValidEmail = emailValidator(subscribeEmail?.trim());
+
+    if (!isValidEmail) {
+      enqueueSnackbar('Invalid Email Address', { variant: 'error' });
+      return;
+    }
+
+    subscribeToNewsLetter(subscribeEmail?.trim(), {
+      onSuccess: () => {
+        setSubscribeEmail('');
+        enqueueSnackbar('Email send successfully', { variant: 'success' });
+      },
+      onError: (err: any) => {
+        enqueueSnackbar(err?.message || 'Something went wrong.', { variant: 'error' });
+      },
+    });
   }
   return (
     <Grid
@@ -123,7 +148,7 @@ export default function Footer(props: MasterTraderProps) {
                   </Stack>
                 </Grid>
                 <Grid xs={6} lg={5}>
-                  <Stack>
+                  <Stack sx={{ alignItems: 'flex-start' }}>
                     <Typography sx={{ mb: '20px', fontWeight: 'bold' }} variant="h5">
                       Alfred
                     </Typography>
@@ -132,7 +157,11 @@ export default function Footer(props: MasterTraderProps) {
                         <Link key={url} href={url} passHref>
                           <a rel="noopener" target={'_blank'}>
                             <Typography
-                              sx={{ mb: '7px', cursor: 'pointer' }}
+                              sx={{
+                                mb: '7px',
+                                cursor: 'pointer',
+                                display: 'inline-block',
+                              }}
                               variant="body2"
                               color="text.secondary"
                             >
@@ -205,30 +234,25 @@ export default function Footer(props: MasterTraderProps) {
                       and tips and tricks for navigating the crypto trading world.
                     </Typography>
                     <TextField
-                      onFocus={() => {
-                        if (subscribeEmail === 'Enter your email address') setSubscribeEmail('');
-                      }}
-                      onBlur={() => {
-                        if (subscribeEmail === '') setSubscribeEmail('Enter your email address');
-                      }}
                       sx={{
                         width: '90%',
                         minWidth: '300px',
                       }}
                       id="subscribe"
-                      placeholder="Enter your email address "
                       value={subscribeEmail}
-                      onChange={(e) => {
-                        setSubscribeEmail(e.target.value);
-                      }}
+                      onChange={handleOnChangeEmail}
                       InputProps={{
-                        style: {
+                        placeholder: 'Enter your email address',
+                        sx: {
                           padding: '0 10px',
                           fontSize: '13px',
                           color: '#000',
                           background: '#fff',
                           borderRadius: '25px',
                           border: 'none !important',
+                          '&::placeholder': {
+                            color: 'gray !important',
+                          },
                         },
                         endAdornment: (
                           <Button
@@ -250,6 +274,13 @@ export default function Footer(props: MasterTraderProps) {
                             Subscribe Now
                           </Button>
                         ),
+                      }}
+                      inputProps={{
+                        sx: {
+                          '&::placeholder': {
+                            color: 'gray !important',
+                          },
+                        },
                       }}
                     />
                   </Stack>

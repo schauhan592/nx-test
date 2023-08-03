@@ -10,3 +10,4 @@ export { default as getTimeSince } from './getTimeSinceFromUnix';
 export { default as currentTime } from './getCurrentTime';
 export { default as getNegPosColor } from './getNegPosColor';
 export { default as mapSymbolWithConstantTokenHex } from './mapSymbolWithConstantTokenHex';
+export { emailValidator } from './emailValidator';

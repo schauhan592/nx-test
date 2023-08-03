@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { Box, Typography } from '@mui/material';
 import Layout from '../layouts';
 
-export const aboutText = `<h1>About Alfred -</h1>
+export const aboutText = `<h1 style="text-align:center;">About Alfred</h1>
 <br>
 <p>Alfred serves as a decentralized investment tool, enabling you to effortlessly track and mimic the trading approaches of the most skilled individuals worldwide. Our aim is to provide support for those who find the complexities of investment daunting, particularly newcomers to the finance realm.
 </p>
@@ -45,7 +45,7 @@ export default function About() {
     <Box
       sx={{
         width: '100%',
-        padding: { xs: '25px', sm: '50px', lg: '120px' },
+        padding: { xs: 5, md: 10 },
         overflow: 'auto',
         justifyContent: 'center',
         alignItems: 'center',

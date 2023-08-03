@@ -33,6 +33,7 @@ const nextConfig = {
   },
   env: {
     NEXT_PUBLIC_APP_BASE_URL: process.env.NEXT_PUBLIC_APP_BASE_URL,
+    NEXT_PUBLIC_JOIN_NEWSLETTER_HOOK: process.env.NEXT_PUBLIC_JOIN_NEWSLETTER_HOOK,
   },
 };
 
