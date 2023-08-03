@@ -1,10 +1,10 @@
 import { AddressAvatar, formatNumber, separateNumberByComma } from '@alfred/alfred-common';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import { Button, Divider, Typography } from '@mui/material';
+import { Link as MUILink, Button, Divider, Typography } from '@mui/material';
 import { truncateAddress } from '@sdf/base';
 import { ITrader } from '../@types';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export default function TopTraderCard(props: any) {
@@ -16,10 +16,10 @@ export default function TopTraderCard(props: any) {
     }
   }, [trader]);
   const heightWidth = 430;
-  const { push } = useRouter();
-  const handleRedirect = () => {
-    push(`copy-trading/${data?.['gmx_top_traders_analytics.account']}`);
-  };
+  // const { push } = useRouter();
+  // const handleRedirect = () => {
+  //   push(`copy-trading/${data?.['gmx_top_traders_analytics.account']}`);
+  // };
   return (
     <Stack>
       <Box
@@ -87,21 +87,28 @@ export default function TopTraderCard(props: any) {
                 </Typography>
               </Stack>
             </Stack>
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: '30px',
-                bgcolor: 'white',
-                color: 'blue',
-                padding: '30px 0',
-                '&:hover': { bgcolor: 'white' },
-                fontSize: '18px',
-                fontWeight: '600',
-              }}
-              onClick={handleRedirect}
+            <MUILink
+              href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}/copy-trading/${data?.['gmx_top_traders_analytics.account']}`}
+              rel="noopener"
+              target="_blank"
+              underline="none"
             >
-              COPY THIS TRADER
-            </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  width: '100%',
+                  borderRadius: '30px',
+                  bgcolor: 'white',
+                  color: 'primary.main',
+                  padding: '30px 0',
+                  '&:hover': { bgcolor: 'white' },
+                  fontSize: '18px',
+                  fontWeight: '600',
+                }}
+              >
+                COPY THIS TRADER
+              </Button>
+            </MUILink>
           </Stack>
         </Stack>
       </Box>

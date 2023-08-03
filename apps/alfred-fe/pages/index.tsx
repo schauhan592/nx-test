@@ -16,7 +16,7 @@ const subHeading = 'Click on copy, sit back, and watch the profits flow in.';
 CopyTradingLandingPage.getLayout = function getLayout(children: ReactNode) {
   return (
     <Layout
-      title="Copy Trading"
+      title="Home"
       variant="copy-trading-landing-page"
       heading={heading}
       subHeading={subHeading}

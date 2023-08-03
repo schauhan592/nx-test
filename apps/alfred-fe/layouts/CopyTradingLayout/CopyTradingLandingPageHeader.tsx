@@ -49,7 +49,6 @@ export default function CopyTradingLandingPageHeader() {
   const handleClose = (): void => {
     setOpenMenu(null);
   };
-
   return (
     <ToolbarStyle
       sx={{
@@ -125,20 +124,17 @@ export default function CopyTradingLandingPageHeader() {
             </Stack>
             {isLg && (
               <Stack
-                gap={2}
+                gap={5}
                 sx={{
-                  alignItems: 'center',
                   alignSelf: 'center',
                   width: '100%',
-                  justifyContent: 'space-around',
+                  justifyContent: 'flex-start',
                   flexDirection: 'row',
                   fontWeight: 'bold',
                   fontSize: '15px',
                   mt: { xs: 2, md: 0 },
                 }}
               >
-                <Link href="/copy-trading/leaderboard">CopyTrading</Link>
-
                 <MUILink
                   href={'https://deqode.gitbook.io/alfred-walk-through'}
                   rel="noopener"
@@ -148,31 +144,46 @@ export default function CopyTradingLandingPageHeader() {
                 >
                   Resources
                 </MUILink>
-                <Link href="/copy-trading/about">About</Link>
+                <MUILink
+                  href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}/about`}
+                  rel="noopener"
+                  target="_blank"
+                  underline="none"
+                  color="white"
+                >
+                  About
+                </MUILink>
               </Stack>
             )}
           </Stack>
           {isLg ? (
             <Stack direction="row" spacing={2} alignItems="center">
-              {account ? (
-                <AccountPopover />
-              ) : (
-                <Button
-                  sx={{
-                    // borderRadius: '20px',
-                    color: 'text.primary',
+              <Button
+                sx={{
+                  // borderRadius: '20px',
+                  color: 'text.primary',
+                  borderWidth: '2px',
+                  fontWeight: 'bold',
+                  fontSize: '13px',
+                  width: '150px',
+                  '&:hover': {
                     borderWidth: '2px',
-                    fontWeight: 'bold',
-                    fontSize: '13px',
-                    width: '150px',
-                  }}
-                  size="medium"
-                  variant="outlined"
-                  onClick={handleOpenConnectModal}
+                  },
+                }}
+                size="medium"
+                variant="outlined"
+                //   // onClick={handleOpenConnectModal}
+              >
+                <MUILink
+                  href={process.env['NEXT_PUBLIC_APP_BASE_URL']}
+                  rel="noopener"
+                  target="_blank"
+                  underline="none"
+                  color="white"
                 >
-                  Connect Wallet
-                </Button>
-              )}
+                  Copy Traders
+                </MUILink>
+              </Button>
             </Stack>
           ) : (
             <>
@@ -222,7 +233,7 @@ export default function CopyTradingLandingPageHeader() {
                         variant="outlined"
                         onClick={handleOpenConnectModal}
                       >
-                        Connect Wallet
+                        Copy Traders
                       </Button>
                     )}
                   </Stack>

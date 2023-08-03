@@ -29,7 +29,9 @@ export default class CustomDocument extends Document {
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-          <link rel="shortcut icon" href="/assets/a.png" />
+          {/* <link rel="shortcut icon" href="/assets/a.png" /> */}
+          <link rel="shortcut icon" href="./favicon/android-chrome-192x192.png" />
+
           {/* <link
             href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Sora&display=swap"
             rel="stylesheet"

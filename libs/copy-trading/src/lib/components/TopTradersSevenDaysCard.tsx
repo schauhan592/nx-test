@@ -3,8 +3,8 @@ import { AddressAvatar, separateNumberByComma } from '@alfred/alfred-common';
 import { truncateAddress } from '@sdf/base';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
+import { Link as MUILink } from '@mui/material';
 import { ITrader } from '../@types';
-import Link from 'next/link';
 
 export default function TopTradersSevenDaysCard(props: { index: number; data: ITrader }) {
   const { data } = props;
@@ -12,7 +12,14 @@ export default function TopTradersSevenDaysCard(props: { index: number; data: IT
     <>
       <Stack direction="row" gap={3} sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography variant="h6">{props.index}</Typography>
-        <Link href={`copy-trading/${data?.['gmx_top_traders_analytics.account']}`}>
+        <MUILink
+          href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}/copy-trading/${data?.['gmx_top_traders_analytics.account']}`}
+          rel="noopener"
+          target="_blank"
+          underline="none"
+          color="white"
+          sx={{ width: '100%' }}
+        >
           <Stack
             gap={2}
             direction="row"
@@ -43,7 +50,7 @@ export default function TopTradersSevenDaysCard(props: { index: number; data: IT
               +{Number(data?.['gmx_top_traders_analytics.one_month_Pnl_percentage']).toFixed(2)}%
             </Typography>
           </Stack>
-        </Link>
+        </MUILink>
       </Stack>
       {props.index !== 5 && <Divider />}
     </>

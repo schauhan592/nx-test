@@ -1,17 +1,18 @@
 import Stack from '@mui/material/Stack';
+import { Link as MUILink } from '@mui/material';
 import GradientTraderCardWithIcon, { GradientCardProps } from './GradientTraderCardWithIcon';
 import Typography from '@mui/material/Typography';
 import { truncateAddress } from '@sdf/base';
 import { AddressAvatar, separateNumberByComma } from '@alfred/alfred-common';
 import Button from '@mui/material/Button';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 export default function TopTradersThirtyDaysCard(props: GradientCardProps) {
   const { data } = props;
-  const { push } = useRouter();
-  const handleCopyRedirect = (address: string) => {
-    push(`copy-trading/${address}`);
-  };
+  // const { push } = useRouter();
+  // const handleCopyRedirect = (address: string) => {
+  //   push(`copy-trading/${address}`);
+  // };
   return (
     <Stack direction="row" gap={3}>
       <GradientTraderCardWithIcon icon={props.icon} size={props.size} data={data} />
@@ -26,7 +27,7 @@ export default function TopTradersThirtyDaysCard(props: GradientCardProps) {
         <Typography color="text.secondary" variant="body2">
           P&L 30d
         </Typography>
-        <Typography variant="h6" >
+        <Typography variant="h6">
           +${separateNumberByComma(data?.['gmx_top_traders_analytics.one_month_pnl_usd'], 2)}
         </Typography>
         <Stack gap={1} direction="row" justifyContent="flex-start" alignItems="center">
@@ -51,24 +52,29 @@ export default function TopTradersThirtyDaysCard(props: GradientCardProps) {
           <Typography color="text.primary" variant="body2">
             {truncateAddress(data?.['gmx_top_traders_analytics.account'])}
           </Typography>
-        </Stack>
-        <Button
-          variant="contained"
-          onClick={() => {
-            handleCopyRedirect(data?.['gmx_top_traders_analytics.account']);
-          }}
-          sx={{
-            color: 'white',
-            width: '100%',
-            // borderRadius: '20px',
-            height: '40px',
-            mt: '5px',
-            fontSize: '15px',
-            fontWeight: 300,
-          }}
+        </Stack>{' '}
+        <MUILink
+          href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}/copy-trading/${data?.['gmx_top_traders_analytics.account']}`}
+          rel="noopener"
+          target="_blank"
+          underline="none"
+          color="text.primary"
         >
-          Copy
-        </Button>
+          <Button
+            variant="contained"
+            sx={{
+              color: 'white',
+              width: '100%',
+              // borderRadius: '20px',
+              height: '40px',
+              mt: '5px',
+              fontSize: '15px',
+              fontWeight: 300,
+            }}
+          >
+            Copy
+          </Button>
+        </MUILink>
       </Stack>
     </Stack>
   );

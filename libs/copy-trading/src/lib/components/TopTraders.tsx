@@ -1,17 +1,17 @@
-import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { Link as MUILink, Box, Button, Grid, Stack, Typography } from '@mui/material';
 import StackedSlider from './StackedSlider';
 import { ITrader } from '../@types';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Image from 'next/image';
 interface TopTradersProps {
   data: ITrader[];
 }
 export default function TopTraders(props: TopTradersProps) {
   const { data } = props;
-  const { push } = useRouter();
-  const handleRedirect = () => {
-    push('copy-trading/leaderboard');
-  };
+  // const { push } = useRouter();
+  // const handleRedirect = () => {
+  //   push('copy-trading/leaderboard');
+  // };
   return (
     <Grid
       container
@@ -70,21 +70,27 @@ export default function TopTraders(props: TopTradersProps) {
               style={{ backgroundSize: 'fit' }}
             />
           </Box>
-
-          <Button
-            variant="contained"
-            onClick={handleRedirect}
-            sx={{
-              fontSize: { xs: '14px', lg: '18px' },
-              // borderRadius: '30px',
-              fontWeight: '600',
-              padding: '20px 0',
-              width: { xs: '80%', md: '70%', lg: '60%' },
-            }}
-            size="large"
+          <MUILink
+            href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}`}
+            rel="noopener"
+            target="_blank"
+            underline="none"
+            color="text.primary"
           >
-            EXPLORE TOP TRADERS
-          </Button>
+            <Button
+              variant="contained"
+              sx={{
+                fontSize: { xs: '14px', lg: '18px' },
+                // borderRadius: '30px',
+                fontWeight: '600',
+                padding: '20px 0',
+                width: { xs: '80%', md: '70%', lg: '60%' },
+              }}
+              size="large"
+            >
+              EXPLORE TOP TRADERS
+            </Button>
+          </MUILink>
           <Stack direction="row" spacing={5}>
             <Stack direction="column">
               <Typography variant="h3" fontWeight="bold">

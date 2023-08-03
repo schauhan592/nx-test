@@ -40,8 +40,16 @@ export default function Footer(props: MasterTraderProps) {
     },
     { url: 'https://deqode.gitbook.io/alfred-walk-through', text: 'Resources', type: 'MUILink' },
     { url: 'mailto:mkhan@deqode.com', text: 'Get Help', type: 'MUILink' },
-    { url: '/copy-trading/privacy-policy', text: 'Privacy Policy', type: 'nextLink' },
-    { url: '/copy-trading/terms-of-use', text: 'Terms of Use', type: 'nextLink' },
+    {
+      url: `${process.env['NEXT_PUBLIC_APP_BASE_URL']}/privacypolicy`,
+      text: 'Privacy Policy',
+      type: 'nextLink',
+    },
+    {
+      url: `${process.env['NEXT_PUBLIC_APP_BASE_URL']}/terms&conditions`,
+      text: 'Terms of Use',
+      type: 'nextLink',
+    },
   ];
   const SocialLinks = [
     { url: 'https://www.instagram.com/alfred.capital/', icon: <InstagramIcon /> },

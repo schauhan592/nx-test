@@ -11,7 +11,7 @@ export function createMeilisearchClient(): MeiliSearch | null {
       host:
         process.env['NODE_ENV'] === 'production'
           ? `${window.location.origin}/${API_ENDPOINTS.SEARCH}`
-          : `${process.env['NEXT_PUBLIC_HOST_API_BASE_URL']}/${API_ENDPOINTS.SEARCH}`,
+          : `${process.env['NEXT_PUBLIC_APP_BASE_URL']}/${API_ENDPOINTS.SEARCH}`,
       apiKey: process.env['NEXT_PUBLIC_MEILISEARCH_API_KEY'],
     });
     return client;

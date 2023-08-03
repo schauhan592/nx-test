@@ -6,13 +6,12 @@ import TopTradersThirtyDaysCard from './TopTradersThirtyDaysCard';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { formatNumber } from '@alfred/alfred-common';
-import NextLink from 'next/link';
 import TopTradersSevenDaysCard from './TopTradersSevenDaysCard';
-import { Grid, useMediaQuery, useTheme } from '@mui/material';
+import { Link as MUILink, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { ITrader } from '../@types';
 import getFilteredData from '../hooks/useGetFilter';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 interface TopTraderSevenDaysProps {
   data: ITrader[];
 }
@@ -20,7 +19,7 @@ export default function TopTradersSevenDays(props: TopTraderSevenDaysProps) {
   const { data } = props;
   const [topFourfilteredTrader, setTopFourfilteredTrader] = useState<ITrader[]>([]);
   const [topSevenfilteredTrader, setTopSevenfilteredTrader] = useState<ITrader[]>([]);
-  const { push } = useRouter();
+  // const { push } = useRouter();
   useEffect(() => {
     const filteredData = getFilteredData({
       data: data,
@@ -33,9 +32,9 @@ export default function TopTradersSevenDays(props: TopTraderSevenDaysProps) {
   const theme = useTheme();
   const isFullHd = useMediaQuery('(min-width:1280px)');
   const isLg = useMediaQuery(theme.breakpoints.up('lg'));
-  const handleCopyRedirect = (address: string) => {
-    push(`copy-trading/${address}`);
-  };
+  // const handleCopyRedirect = (address: string) => {
+  //   push(`copy-trading/${address}`);
+  // };
   return (
     <Grid container>
       <Stack
@@ -79,49 +78,52 @@ export default function TopTradersSevenDays(props: TopTraderSevenDaysProps) {
                     </Box>
                   </a>
                 </NextLink> */}
-                  <NextLink
-                    href={`/copy-trading/${topFourfilteredTrader[0]?.['gmx_top_traders_analytics.account']}`}
-                    passHref
+                  <MUILink
+                    href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}/copy-trading/${topFourfilteredTrader[0]?.['gmx_top_traders_analytics.account']}`}
+                    rel="noopener"
+                    target="_blank"
+                    underline="none"
                   >
-                    <a rel="noopener noreferrer">
-                      <Box sx={{ cursor: 'pointer' }}>
-                        <Typography color="text.secondary" variant="body2">
-                          P&L 30d
-                        </Typography>
-                        <Typography variant="h5" color="#4BD2A1">
-                          +$
-                          {formatNumber(
-                            Number(
-                              topFourfilteredTrader[0]?.[
-                                'gmx_top_traders_analytics.one_month_volume_usd'
-                              ]
-                            )
-                          )}
-                        </Typography>
-                      </Box>
-                    </a>
-                  </NextLink>
+                    <Box sx={{ cursor: 'pointer' }}>
+                      <Typography color="text.secondary" variant="body2">
+                        P&L 30d
+                      </Typography>
+                      <Typography variant="h5" color="#4BD2A1">
+                        +$
+                        {formatNumber(
+                          Number(
+                            topFourfilteredTrader[0]?.[
+                              'gmx_top_traders_analytics.one_month_volume_usd'
+                            ]
+                          )
+                        )}
+                      </Typography>
+                    </Box>
+                  </MUILink>
                 </Stack>
                 <Stack sx={{ marginRight: '20px' }}>
-                  <Button
-                    variant="contained"
-                    onClick={() => {
-                      handleCopyRedirect(
-                        topFourfilteredTrader[0]?.['gmx_top_traders_analytics.account']
-                      );
-                    }}
-                    sx={{
-                      color: 'white',
-                      width: '150px',
-                      // borderRadius: '20px',
-                      height: '40px',
-                      mr: '-20px',
-                      fontSize: '15px',
-                      fontWeight: 300,
-                    }}
+                  <MUILink
+                    href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}/copy-trading/${topFourfilteredTrader[0]?.['gmx_top_traders_analytics.account']}`}
+                    rel="noopener"
+                    target="_blank"
+                    underline="none"
+                    color="text.primary"
                   >
-                    Copy
-                  </Button>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        color: 'white',
+                        width: '150px',
+                        // borderRadius: '20px',
+                        height: '40px',
+                        mr: '-20px',
+                        fontSize: '15px',
+                        fontWeight: 300,
+                      }}
+                    >
+                      Copy
+                    </Button>
+                  </MUILink>
                 </Stack>
               </Stack>
             </Stack>
