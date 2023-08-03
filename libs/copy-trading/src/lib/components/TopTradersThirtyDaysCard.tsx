@@ -25,7 +25,7 @@ export default function TopTradersThirtyDaysCard(props: GradientCardProps) {
         }}
       >
         <Typography color="text.secondary" variant="body2">
-          P&L 30d
+          PNL 30d
         </Typography>
         <Typography variant="h6">
           +${separateNumberByComma(data?.['gmx_top_traders_analytics.one_month_pnl_usd'], 2)}

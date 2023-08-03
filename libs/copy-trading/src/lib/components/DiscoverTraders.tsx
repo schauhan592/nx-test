@@ -21,8 +21,8 @@ interface DiscoverTraderProps {
   data: ITrader[];
 }
 const map = {
-  'Highest Pnl': 'gmx_top_traders_analytics.one_month_pnl_usd',
-  'Highest Roi': 'gmx_top_traders_analytics.one_month_Pnl_percentage',
+  'Highest PNL': 'gmx_top_traders_analytics.one_month_pnl_usd',
+  'Highest ROI': 'gmx_top_traders_analytics.one_month_Pnl_percentage',
   'Highest Winning Rate': 'gmx_top_traders_analytics.winning_percentage',
   'Highest Volume': 'gmx_top_traders_analytics.one_month_volume_usd',
 };
@@ -31,19 +31,19 @@ export default function DiscoverTraders(props: DiscoverTraderProps) {
   const [filteredData, setFilteredData] = useState<ITrader[] | null>(null);
   const { push } = useRouter();
   const [selectedChip, setSelectedChip] = useState<
-    'Highest Pnl' | 'Highest Roi' | 'Highest Winning Rate' | 'Highest Volume'
-  >('Highest Pnl');
+    'Highest PNL' | 'Highest ROI' | 'Highest Winning Rate' | 'Highest Volume'
+  >('Highest PNL');
   useEffect(() => {
     const filteredFourTrader = getFilteredData({
       data: data,
-      column: map[selectedChip ?? 'Highest Pnl'],
+      column: map[selectedChip ?? 'Highest PNL'],
       sort: 'desc',
     })?.slice(0, 4);
     setFilteredData(filteredFourTrader);
   }, [selectedChip, data]);
 
   const handleChipClick = (
-    label: 'Highest Pnl' | 'Highest Roi' | 'Highest Winning Rate' | 'Highest Volume'
+    label: 'Highest PNL' | 'Highest ROI' | 'Highest Winning Rate' | 'Highest Volume'
   ) => {
     setSelectedChip(label);
   };
@@ -72,21 +72,21 @@ export default function DiscoverTraders(props: DiscoverTraderProps) {
         <Grid item sm={12} md={12} lg={12}>
           <Stack gap={1} direction="row" sx={{ flexWrap: 'wrap', mb: '10px' }}>
             <StyledFilledChip
-              label="Highest PnL"
-              variant={selectedChip === 'Highest Pnl' ? 'filled' : 'outlined'}
-              onClick={() => handleChipClick('Highest Pnl')}
+              label="Highest PNL"
+              variant={selectedChip === 'Highest PNL' ? 'filled' : 'outlined'}
+              onClick={() => handleChipClick('Highest PNL')}
               sx={
-                selectedChip === 'Highest Pnl'
+                selectedChip === 'Highest PNL'
                   ? { backgroundColor: 'primary.main', color: 'white' }
                   : {}
               }
             />
             <StyledFilledChip
-              label="Highest Roi"
-              variant={selectedChip === 'Highest Roi' ? 'filled' : 'outlined'}
-              onClick={() => handleChipClick('Highest Roi')}
+              label="Highest ROI"
+              variant={selectedChip === 'Highest ROI' ? 'filled' : 'outlined'}
+              onClick={() => handleChipClick('Highest ROI')}
               sx={
-                selectedChip === 'Highest Roi'
+                selectedChip === 'Highest ROI'
                   ? { backgroundColor: 'primary.main', color: 'white' }
                   : {}
               }

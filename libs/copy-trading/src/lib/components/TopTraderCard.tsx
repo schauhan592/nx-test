@@ -52,8 +52,8 @@ export default function TopTraderCard(props: any) {
             </Typography>
           </Stack>
           <Stack direction="column" spacing={1} alignItems="center" justifyContent="center">
-            <Typography variant="body1">P&L 30d</Typography>
-            <Typography variant="h3" sx={{ fontWeight: 700 }}>
+            <Typography variant="body1">PNL 30d</Typography>
+            <Typography variant="h3" sx={{ fontWeight: 700, color: '#4BD2A1' }}>
               +$
               {separateNumberByComma(
                 data?.['gmx_top_traders_analytics.one_month_pnl_usd'] || '',
@@ -73,17 +73,17 @@ export default function TopTraderCard(props: any) {
               justifyContent="space-between"
             >
               <Stack direction="column" alignItems="center" justifyContent="center">
-                <Typography variant="caption">30d P&L</Typography>
-                <Typography variant="h6">
-                  +USD {formatNumber(Number(data?.['gmx_top_traders_analytics.one_month_pnl_usd']))}
+                <Typography variant="caption">ROI 30d</Typography>
+                <Typography variant="h6" color="#4BD2A1">
+                  +{Number(data?.['gmx_top_traders_analytics.one_month_Pnl_percentage']).toFixed(2)}
+                  %
                 </Typography>
               </Stack>
               <Divider orientation="vertical" />
               <Stack direction="column" alignItems="center" justifyContent="center">
-                <Typography variant="caption">30d Roi</Typography>
-                <Typography variant="h6" color="#4BD2A1">
-                  +{Number(data?.['gmx_top_traders_analytics.one_month_Pnl_percentage']).toFixed(2)}
-                  %
+                <Typography variant="caption">Winning Rate</Typography>
+                <Typography variant="h6" color="primary.main">
+                  +{Number(data?.['gmx_top_traders_analytics.winning_percentage']).toFixed(2)}%
                 </Typography>
               </Stack>
             </Stack>
@@ -99,9 +99,15 @@ export default function TopTraderCard(props: any) {
                   width: '100%',
                   borderRadius: '30px',
                   bgcolor: 'white',
-                  color: 'primary.main',
+                  color: '#fff',
                   padding: '30px 0',
-                  '&:hover': { bgcolor: 'white' },
+                  background: '#5973FE',
+                  boxShadow:
+                    '0px 0px 0px 24px rgba(35, 46, 101, 0.12), 0px 0px 0px 16px rgba(35, 46, 101, 0.25), 0px 0px 0px 8px rgba(35, 46, 101, 0.50), 6px -6px 8px 0px rgba(0, 0, 0, 0.25) inset, -2px 6px 8px 0px rgba(241, 234, 234, 0.15) inset',
+                  '&:hover': {
+                    boxShadow:
+                      '0px 0px 0px 24px rgba(35, 46, 101, 0.12), 0px 0px 0px 16px rgba(35, 46, 101, 0.25), 0px 0px 0px 8px rgba(35, 46, 101, 0.50), 6px -6px 8px 0px rgba(0, 0, 0, 0.25) inset, -2px 6px 8px 0px rgba(241, 234, 234, 0.15) inset',
+                  },
                   fontSize: '18px',
                   fontWeight: '600',
                 }}

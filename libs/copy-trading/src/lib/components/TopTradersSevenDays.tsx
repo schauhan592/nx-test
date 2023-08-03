@@ -86,7 +86,7 @@ export default function TopTradersSevenDays(props: TopTraderSevenDaysProps) {
                   >
                     <Box sx={{ cursor: 'pointer' }}>
                       <Typography color="text.secondary" variant="body2">
-                        P&L 30d
+                        PNL 30d
                       </Typography>
                       <Typography variant="h5" color="#4BD2A1">
                         +$

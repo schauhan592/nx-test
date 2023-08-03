@@ -16,13 +16,13 @@ export default function DiscoverTraderCard(props: DiscoverTraderCardProps) {
   const { selectedChip, data } = props;
   let filteredData;
   switch (selectedChip) {
-    case 'Highest Pnl':
+    case 'Highest PNL':
       filteredData = {
-        title: 'P&L',
+        title: 'PNL',
         data: `${formatNumber(Number(data?.['gmx_top_traders_analytics.one_month_pnl_usd']))} USD`,
       };
       break;
-    case 'Highest Roi':
+    case 'Highest ROI':
       filteredData = {
         title: 'ROI',
         data: `${Number(data?.['gmx_top_traders_analytics.one_month_Pnl_percentage']).toFixed(
@@ -89,7 +89,7 @@ export default function DiscoverTraderCard(props: DiscoverTraderCardProps) {
               }}
               variant="body1"
             >
-              30d P&L
+              PNL 30d
             </Typography>
             <Typography
               sx={{

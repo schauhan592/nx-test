@@ -68,7 +68,7 @@ export default function GradientTraderCardWithIcon(props: GradientCardProps) {
               }}
               variant="body1"
             >
-              P&L 30d
+              PNL 30d
             </Typography>
             <Typography
               sx={{
@@ -122,7 +122,7 @@ export default function GradientTraderCardWithIcon(props: GradientCardProps) {
                 }}
                 variant="body1"
               >
-                30d ROI
+                ROI 30d
               </Typography>
               <Typography
                 sx={{

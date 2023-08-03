@@ -44,9 +44,8 @@ export default function TopTraders(props: TopTradersProps) {
             </Typography>
           </Stack>
           <Typography sx={{ fontSize: '20px' }} color="text.secondary" variant="body1">
-            Alfred is a decentralized investment machine <br />
-            that allows you to follow the world’s best traders, <br />
-            and copy their trades with a single click. <br />
+            Alfred is a decentralized investment machine that allows you to follow the world’s best
+            traders, and copy their trades with a single click. <br />
           </Typography>
           <Box
             sx={{
