@@ -31,10 +31,14 @@ export default function Footer(props: MasterTraderProps) {
     setTopTraderAddress(filteredData[0]);
   }, [data]);
   const Links = [
-    { url: '/copy-trading/leaderboard', text: 'Top Traders', type: 'nextLink' },
-    { url: '/copy-trading/leaderboard', text: 'DeFi Strategies (NEW!)', type: 'nextLink' },
+    { url: `${process.env['NEXT_PUBLIC_APP_BASE_URL']}`, text: 'Top Traders', type: 'nextLink' },
     {
-      url: `/copy-trading/${topTraderAddress?.['gmx_top_traders_analytics.account']}`,
+      url: `${process.env['NEXT_PUBLIC_APP_BASE_URL']}`,
+      text: 'DeFi Strategies (NEW!)',
+      type: 'nextLink',
+    },
+    {
+      url: `${process.env['NEXT_PUBLIC_APP_BASE_URL']}/copy-trading/${topTraderAddress?.['gmx_top_traders_analytics.account']}`,
       text: 'Trader of the Day',
       type: 'nextLink',
     },
@@ -126,7 +130,7 @@ export default function Footer(props: MasterTraderProps) {
                     {Links.map(({ url, text, type }) =>
                       type === 'nextLink' ? (
                         <Link key={url} href={url} passHref>
-                          <a rel="noopener">
+                          <a rel="noopener" target={'_blank'}>
                             <Typography
                               sx={{ mb: '7px', cursor: 'pointer' }}
                               variant="body2"

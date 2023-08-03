@@ -144,15 +144,9 @@ export default function CopyTradingLandingPageHeader() {
                 >
                   Resources
                 </MUILink>
-                <MUILink
-                  href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}/about`}
-                  rel="noopener"
-                  target="_blank"
-                  underline="none"
-                  color="white"
-                >
+                <Link href={`/about`} rel="noopener" color="white">
                   About
-                </MUILink>
+                </Link>
               </Stack>
             )}
           </Stack>

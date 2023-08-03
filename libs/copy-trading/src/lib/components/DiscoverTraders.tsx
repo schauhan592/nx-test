@@ -2,11 +2,10 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import DiscoverTraderCard from './DiscoverTraderCard';
-import { Button, Chip, styled } from '@mui/material';
+import { Button, Chip, Link, styled } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { ITrader } from '../@types';
 import getFilteredData from '../hooks/useGetFilter';
-import { useRouter } from 'next/router';
 
 const StyledFilledChip = styled(Chip)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -29,7 +28,6 @@ const map = {
 export default function DiscoverTraders(props: DiscoverTraderProps) {
   const { data } = props;
   const [filteredData, setFilteredData] = useState<ITrader[] | null>(null);
-  const { push } = useRouter();
   const [selectedChip, setSelectedChip] = useState<
     'Highest PNL' | 'Highest ROI' | 'Highest Winning Rate' | 'Highest Volume'
   >('Highest PNL');
@@ -47,9 +45,7 @@ export default function DiscoverTraders(props: DiscoverTraderProps) {
   ) => {
     setSelectedChip(label);
   };
-  const handleMoreTrader = () => {
-    push('copy-trading/leaderboard');
-  };
+
   return (
     <Stack
       sx={{
@@ -135,14 +131,11 @@ export default function DiscoverTraders(props: DiscoverTraderProps) {
         </Grid>
         <Grid item sm={12} md={12} lg={12} mt={3}>
           <Stack alignItems="center">
-            <Button
-              variant="outlined"
-              size="large"
-              sx={{ color: 'white', mr: '20px' }}
-              onClick={handleMoreTrader}
-            >
-              More Traders
-            </Button>
+            <Link href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}`} target="_blank">
+              <Button variant="outlined" size="large" sx={{ color: 'white', mr: '20px' }}>
+                More Traders
+              </Button>
+            </Link>
           </Stack>
         </Grid>
       </Grid>

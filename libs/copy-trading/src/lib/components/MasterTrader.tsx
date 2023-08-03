@@ -3,10 +3,9 @@ import GradientTraderCardWithIcon from './GradientTraderCardWithIcon';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Link, useMediaQuery, useTheme } from '@mui/material';
 import { ITrader } from '../@types';
 import getFilteredData from '../hooks/useGetFilter';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 interface MasterTraderProps {
   data: ITrader[];
@@ -26,11 +25,7 @@ export default function MasterTrader(props: MasterTraderProps) {
   }, [data]);
 
   const theme = useTheme();
-  const { push } = useRouter();
   const isSmallerThanLg = useMediaQuery(theme.breakpoints.down('lg'));
-  const handleRedirect = () => {
-    push('copy-trading/leaderboard');
-  };
 
   return (
     <Grid container>
@@ -88,20 +83,20 @@ export default function MasterTrader(props: MasterTraderProps) {
             on-chain track record, are available for you to copy. You may pick one or two, or build
             your own master trading team of 50+ traders to “work” for you - simultaneously.
           </Typography>
-          <Button
-            sx={{
-              // borderRadius: '30px',
-              width: { xs: '300px', sm: '420px' },
-              height: '60px',
-              fontSize: { xs: '12px', sm: '15px', md: '20px' },
-              fontWeight: '700',
-              textTransform: 'none',
-            }}
-            onClick={handleRedirect}
-            variant="contained"
-          >
-            Try Copying a Master Trader Now
-          </Button>
+          <Link href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}`} target="_blank">
+            <Button
+              sx={{
+                width: { xs: '300px', sm: '420px' },
+                height: '60px',
+                fontSize: { xs: '12px', sm: '15px', md: '20px' },
+                fontWeight: '700',
+                textTransform: 'none',
+              }}
+              variant="contained"
+            >
+              Try Copying a Master Trader Now
+            </Button>
+          </Link>
         </Stack>
       </Stack>
     </Grid>

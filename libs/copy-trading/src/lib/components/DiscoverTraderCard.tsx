@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { truncateAddress } from '@sdf/base';
 import { ITrader } from '../@types';
-import { useRouter } from 'next/router';
+import { Link } from '@mui/material';
 
 interface DiscoverTraderCardProps {
   data: ITrader;
@@ -46,10 +46,7 @@ export default function DiscoverTraderCard(props: DiscoverTraderCardProps) {
       };
       break;
   }
-  const { push } = useRouter();
-  const handleViewTrader = (account: string) => {
-    push(`/copy-trading/${account}`);
-  };
+
   return (
     <Box
       sx={{
@@ -120,28 +117,20 @@ export default function DiscoverTraderCard(props: DiscoverTraderCardProps) {
             </Typography>
           </Stack>
         </Stack>
-        {/* <Divider /> */}
-        <Stack direction="row" justifyContent="space-between" padding="7px">
-          <Button
-            fullWidth
-            variant="outlined"
-            size="small"
-            style={{ height: '36px', fontSize: '12px', color: 'white' }}
-            onClick={() => {
-              handleViewTrader(data?.['gmx_top_traders_analytics.account']);
-            }}
+        <Stack direction="row" justifyContent="center" padding="7px">
+          <Link
+            href={`${process.env['NEXT_PUBLIC_APP_BASE_URL']}/copy-trading/${data?.['gmx_top_traders_analytics.account']}`}
+            target="_blank"
           >
-            View Trader Profile
-          </Button>
-          {/* <Button
-            variant="text"
-            style={{ height: '28px', fontSize: '10px', borderRadius: '20px' }}
-            onClick={() => {
-              handleViewTrader(data?.['gmx_top_traders_analytics.account']);
-            }}
-          >
-            Copy Now
-          </Button> */}
+            <Button
+              fullWidth
+              variant="outlined"
+              size="small"
+              style={{ height: '36px', fontSize: '12px', color: 'white' }}
+            >
+              View Trader Profile
+            </Button>
+          </Link>
         </Stack>
       </Stack>
     </Box>
